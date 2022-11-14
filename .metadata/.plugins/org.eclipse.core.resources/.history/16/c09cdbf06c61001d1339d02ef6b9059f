@@ -1,0 +1,37 @@
+package tw.ericchen.action;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+
+import tw.ericchen.model.HouseBean;
+import tw.ericchen.util.HibernateUtil;
+
+public class DemoHouseBeanAction2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+        
+             SessionFactory factory=HibernateUtil.getSessionFactory();
+             Session session=factory.getCurrentSession();
+             try {
+            	  session.beginTransaction();
+            	  
+            	   HouseBean hb=new HouseBean();
+                   hb.setHousename("blue house");
+                   session.save(hb);
+                   
+            	  session.getTransaction().commit();
+             }catch(Exception e) {
+            	 session.getTransaction().rollback();
+            	 e.printStackTrace();
+            	 
+            	 
+             }finally {
+           HibernateUtil.closeSeesionFactory();
+             }  
+	}
+
+}

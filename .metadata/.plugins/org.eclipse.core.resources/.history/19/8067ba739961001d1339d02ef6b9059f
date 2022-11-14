@@ -1,0 +1,5 @@
+package tw.ericchen.model;
+
+public interface IHouseBeanService {
+
+}
